@@ -1,9 +1,23 @@
 ﻿@page "/"
+@inject IConfiguration Config
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Blazor Deploy Site Test TC</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p class="h4">
+    Connection String:@connectionstring
+</p>
+
+
+@code {
+    private string connectionstring = "";
+
+    protected override void OnInitialized()
+    {
+        connectionstring = Config.GetConnectionString("Default") ?? "unknown";
+
+    }
+
+}
